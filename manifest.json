@@ -2,11 +2,11 @@
 	"name": "getURL - Link Parameter Extracter",
 	"description": "getURL extracts the values of the clicked link and displays them in a popup table.",
 	"short_name": "getURL",
-	
-	"version": "1.0.1",
-	"author": "StuartD - www.stuartd.co.uk",  
+
+	"version": "1.0.2",
+	"author": "StuartD - www.stuartd.co.uk",
 	"incognito": "not_allowed",
-	
+
 	"permissions": ["contextMenus", "storage"],
 	"background": {
 		"persistent": false,
@@ -15,7 +15,9 @@
 	"manifest_version": 2,
 
 	"icons": {
-		"48": "img/favicon.png"
+		"16": "img/favicon.png",
+		"48": "img/favicon.png",
+		"128": "img/favicon.png"
 	},
 	"browser_action": {
 		"default_icon": "img/favicon.png",
