@@ -1,0 +1,20 @@
+{
+	"name": "getURL Parameters",
+	"description": "Get the parameters from the URL and display in a table",
+	"version": "1.0",
+	"permissions": ["contextMenus", "storage"],
+	"background": {
+		"persistent": false,
+		"scripts": ["js/background.js"]
+	},
+	"manifest_version": 2,
+
+	"icons": {
+		"16": "img/favicon.png"
+	},
+	"browser_action": {
+		"default_icon": "img/favicon.png",
+		"default_title": "getURL Parameters",
+		"default_popup": "popup.html"
+	}
+}
