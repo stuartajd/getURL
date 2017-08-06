@@ -3,7 +3,7 @@
 	"description": "getURL extracts the values of the clicked link and displays them in a popup table.",
 	"short_name": "getURL",
 	
-	"version": "1.0",
+	"version": "1.0.1",
 	"author": "StuartD - www.stuartd.co.uk",  
 	"incognito": "not_allowed",
 	
