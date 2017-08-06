@@ -6,7 +6,7 @@
 </p>
 
 ## Release Version
-Chrome Web Store: [getURL - Link Parameter Extractor](https://chrome.google.com/webstore/detail/geturl-link-parameter-ext/kindcepkhhhkoofimgndkdbhkfechfon)
+Chrome Web Store: <a href="https://chrome.google.com/webstore/detail/geturl-link-parameter-ext/kindcepkhhhkoofimgndkdbhkfechfon" target="_blank">getURL - Link Parameter Extractor</a>
 
 ## How to Use
 <img src="https://lh3.googleusercontent.com/3E8oNNwR_IK2GCK18XWKpWcR2Q9LmIt3G31Id4Ucf5GEyN93gPUj94V5cRJF754RQ0Is2FduzxM=w400">
