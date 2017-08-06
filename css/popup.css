@@ -4,44 +4,47 @@ body {
 	color: white;
 }
 
-h3{
+h3 {
 	text-align: center;
 }
 
-table{
-	width: 100%;
-	margin-bottom: 1em;
-}
-
-button{
-	margin: 1em 0.2em;
+button {
+	margin: 1em 0;
+	margin-left: 1em;
 	border: none;
 	color: #263238;
 	background-color: white;
 	cursor: pointer;
 	padding: 0.5em 1em;
 }
-button:hover{
+
+button:hover {
 	background-color: grey;
 	color: white;
 }
 
-button:after{
-	clear:both;
+a,
+a:active,
+a:hover,
+a:visited {
+	color: white;
+	text-decoration: underline;
 }
 
-table{
+table {
+	width: 100%;
+	margin-bottom: 1em;
 	border: none;
 }
 
-th{
+th {
 	background-color: white;
 	color: #263238;
 	font-weight: bold;
 }
 
 th,
-td{
+td {
 	padding: 0.5em;
 	border: 1px solid darkgray;
 }
