@@ -1,1 +1,2 @@
-function onInit(){chrome.storage.sync.set({url:""})}chrome.contextMenus.onClicked.addListener(function(n,e){console.log(n.linkUrl),chrome.storage.sync.set({url:n.linkUrl})}),document.addEventListener("DOMContentLoaded",onInit,!1),chrome.runtime.onInstalled.addListener(function(){chrome.contextMenus.create({title:"getURL",contexts:["link"],id:"contextlink"})});
+function onInit(){chrome.storage.sync.set({url:""})}
+chrome.contextMenus.onClicked.addListener(function(n,e){console.log(n.linkUrl),chrome.storage.sync.set({url:n.linkUrl})}),document.addEventListener("DOMContentLoaded",onInit,!1),chrome.runtime.onInstalled.addListener(function(){chrome.contextMenus.create({title:"getURL",contexts:["link"],id:"contextlink"})})
