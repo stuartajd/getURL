@@ -89,15 +89,17 @@ a:visited {
 }
 
 div#table {
+	margin: 0 auto;
+	width: 90%;
 	max-height: 30em;
-	min-height: 5em
+	min-height: 5em;
 }
 
 table {
 	table-layout: fixed;
     width: 100%;  
 	margin-bottom: 1em;
-	border: none
+	border: none;
 }
 
 th {
