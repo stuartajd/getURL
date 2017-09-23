@@ -3,7 +3,7 @@
 	"description": "getURL extracts the query parameters of the clicked link and displays them in a popup table.",
 	"short_name": "getURL",
 
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"author": "StuartD - www.stuartd.co.uk",
 	"incognito": "not_allowed",
 
@@ -12,6 +12,7 @@
 		"persistent": false,
 		"scripts": ["js/background.js"]
 	},
+
 	"manifest_version": 2,
 
 	"icons": {
