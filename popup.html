@@ -14,48 +14,121 @@
 		<p>Right Click > getURL to begin</p>
 	</header>
 	
-	<div id="changelog">
-		<h1>getURL Changelog - 1.0.7 <span id="close" title="Close"><img src="img/close.png" style="width: 1em;"></span></h1>
-		<ul>
-			<li>Added a preview of the page base URL that was originally getURL'd.</li>
-			<li>Added the ability to toggle specific URL parameters on a link and generate the new preview link (as above).</li>
-			<li>Added a bubble to display the current amount of URL parameters on the getURL Icon.</li>
-			<li>Added changelog system, this message will not display again until there is a new update.</li>
+	<aside>
+		<ul id="pages">
+			<li data-goto="getURL">getURL</li>
+			<li data-goto="history" data-action="loadHistory">History</li>
+			<li data-goto="export">Export</li>
+			<div class="spacer"></div>
+			<li data-goto="about">About</li>
+			<li data-goto="reset">Reset</li>
 		</ul>
+	</aside> 
 
-		<hr>
+	<section data-page="about">			
+		<h3>About getURL - 1.0.8</h3>
 
-		<p>Thank you for using getURL. If you have any suggestions feel free to create an "Issue" on GitHub.</p>
-		<p style="text-align: right;">- StuartD</p>
-	</div>
+		<p>getURL extracts the values of the clicked link and displays them in a popup table. This tool makes it simpler to test and see the values presented as the query string.</p>
 
-	<div class="container">
-		<fieldset id="showURL">
-		  	<legend>Preview URL</legend>
-			<code><a id="URLbase" target="_blank"></a></code>
- 		</fieldset>
+		<h3>How does it work?</h3>
 
- 		<br />		
+		<p>It's as simple as Right Click > getURL. Open up the Extension popup window and you will be greeted with the parameters in a nicely formatted table. You can now even export the parameters to both CSV and TSV format, simply visit the Export Tab.</p>
 
-		<div id="table">
-			<table border="0" cellspacing="0" cellpadding="0">
-				<thead>
-					<tr>
-						<th style="width: 30%;">Param</th>
-						<th style="width: 60%;">Value</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
+		<div class="text-center">
+			<p><a href="https://chrome.google.com/webstore/detail/geturl-link-parameter-ext/kindcepkhhhkoofimgndkdbhkfechfon" target="_blank"><img src="img/chrome.png" alt="Chrome Web Store" style="width: 3em;vertical-align:middle;"></a> &nbsp;
+			<a href="https://twitter.com/intent/user?screen_name=StuartD_" target="_blank"><img src="img/twitter.png" alt="Twitter" style="width: 3em;vertical-align:middle;"></a> &nbsp; 
+			<a href="https://github.com/stuartajd/getURL" target="_blank"><img src="img/github.png" alt="GitHub" style="width: 3em;vertical-align:middle;"></a></p>
+		
+			<p>			
+				<button type="button" data-goto="changelog" style="vertical-align:middle;">Changelog</button>
+			</p>
 		</div>
-	</div>
-	
-	<footer>
-		<button id="refresh" style="float: left;">Refresh</button>
-		<button id="clear" style="float: left;">Clear</button>
+	</section>	
 
-		<p style="text-align: right;"><a href="https://chrome.google.com/webstore/detail/geturl-link-parameter-ext/kindcepkhhhkoofimgndkdbhkfechfon" target="_blank">Extension</a> : <a href="https://github.com/stuartajd/getURLs" target="_blank">GitHub</a></p>
-	</footer>
+	<section data-page="changelog">			
+      	<div class="container">
+			<h3>Version: 1.0.8</h3>
+
+			<ul>
+				<li>Updated the overall styling of the extension.</li>
+				<li>Added a multiple tab system to see different sections of the extension.</li>
+				<li>Added export functionality to both Tab and CSV.</li>
+				<li>Added a new "Full URL" preview on the getURL tab, this will show the full URL without the need to select or alter the query parameters.</li>
+				<li>General code clean up.</li>
+			</ul>
+
+			<div class="alert">The changelog will only automatically appear during updates or new installations. Click to a tab on the left to hide.</div>
+
+			<p class="text-center">			
+				<button type="button" data-goto="about" style="vertical-align:middle;">About getURL</button>
+			</p>
+    	</div>
+	</section>		
+
+	<section data-page="getURL">	
+		<h3>getURL Parameters</h3>
+
+      	<div id="table">
+      		<fieldset id="showURL" style="margin-bottom: 1em;">
+			  	<legend>Preview URL</legend>
+				<code><a id="URLbase" target="_blank"></a></code>
+	 		</fieldset>
+
+			<div>
+				<table border="0" cellspacing="0" cellpadding="0" id="getURL">
+					<thead>
+						<tr>
+							<th style="width: 30%;">Param</th>
+							<th style="width: 70%;">Value</th>
+						</tr>
+					</thead>
+					<tbody id="getURLtable">
+						<tr><td colspan="2" id="notClickable">No query parameters to display</td></tr>
+					</tbody>
+				</table>
+				<p></p>
+			</div>
+
+			<fieldset id="showURL" style="margin-bottom: 1em;">
+			  	<legend>Full URL</legend>
+				<code><a id="fullURL" target="_blank"></a></code>
+	 		</fieldset>
+    	</div>
+	</section>
+
+	<section data-page="export">
+		<h3>Export URL Parameters</h3>
+
+		<div class="alert" id="exportError">It doesn't look like you've got any URL Parameters to export.</div>
+		
+		<div id="exportTool">
+			<p>This tool will allow you to export the current URL parameters shown in the getURL tab as a CSV file. Simply copy out the contents of the text box below.</p>
+			<p>
+				<button type="button" data-action="exportCSV">Export CSV File</button> &nbsp; <button type="button" data-action="exportTSV">Export TSV File</button>
+			</p>
+			
+			<div>
+				<textarea readonly style="width: 100%;" rows="14" id="exportOutput" class="force-select-all"></textarea>
+			</div>
+		</div>
+		
+	</section>
+		
+	<section data-page="history">
+		<h3>getURL History</h3>
+		<p>The list below contains the latest 10 links that have been explored with getURL. Click a link to expand the full parameters.</p>
+
+		<ul id="historyList"></ul>
+	</section>	
+
+	<section data-page="reset">
+		<h3>Confirm Reset</h3>
+		<div class="alert">This action will completely refresh getURL. It will <strong>keep</strong> the history but reset the current stored link.</div>
+		<p><button type="button" id="resetKeepHistory">Reset, Keep History</button></p>
+
+		<div class="alert">This action will completely reset getURL. It will <strong>clear</strong> the history.</div>
+		<p><button type="button" id="resetEverything">Reset Everything</button></p>
+	</section>
 </body>
 
 </html>

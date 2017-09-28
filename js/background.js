@@ -1,12 +1,38 @@
-function onInit() {
-	chrome.storage.sync.set({url: "", CLread: true});
-}
+var urlHistory = [];
 
-chrome.contextMenus.onClicked.addListener(function (n, e) {
-	chrome.storage.sync.set({
-		url: n.linkUrl
+function onInit() {
+	chrome.storage.sync.get('history', function(item){ 
+		if(item.history){
+			urlHistory = JSON.parse(item.history); 
+		} else {
+			urlHistory = [];
+		}
 	});
 
+	chrome.storage.sync.set({url: "", CLread: true });
+}
+
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+    chrome.storage.sync.get('history', function(item){ 
+		if(item.history){ 
+			urlHistory = JSON.parse(item.history); 
+		} else {
+			urlHistory = [];
+		}
+	});
+
+});
+
+chrome.contextMenus.onClicked.addListener(function (n, e) {
+	
+	urlHistory.unshift(n.linkUrl);
+	
+	if(urlHistory.length > 10){
+		urlHistory.pop();
+	}
+
+	chrome.storage.sync.set({url: n.linkUrl, history: JSON.stringify(urlHistory)});
+	
 	count = Array.from(new URLSearchParams(new URL(n.linkUrl).search)).length;
 	chrome.browserAction.setBadgeText({ text: count.toString() });	
 });
