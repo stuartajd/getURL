@@ -30,14 +30,17 @@ function getParamsFromUrl(url) {
 		let key = pair[0];
 		let value = pair[1];
 
-		// Stack values in an array if mulitple for a single key
-		if (typeof params[key] !== 'undefined' && !Array.isArray(params[key])) {
-			params[key] = [params[key]];
-			params[key].push(value);
+		// Set value if a single value for key
+		if (typeof params[key] === 'undefined') {
+			params[key] = value;
 			continue;
 		}
 
-		params[key] = value;
+		// Stack values in an array if mulitple for a single key
+		if (!Array.isArray(params[key])) {
+			params[key] = [params[key]];
+		}
+		params[key].push(value);
 	}
 	return params;
 }
