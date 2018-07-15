@@ -19,6 +19,7 @@
 			<li data-goto="getURL">getURL</li>
 			<li data-goto="history" data-action="loadHistory">History</li>
 			<li data-goto="export">Export</li>
+			<li data-goto="settings">Settings</li> 
 			<div class="spacer"></div>
 			<li data-goto="about">About</li>
 			<li data-goto="reset">Reset</li>
@@ -26,7 +27,7 @@
 	</aside> 
 
 	<section data-page="about">			
-		<h3>About getURL - 1.0.8</h3>
+		<h3>getURL - 1.0.9</h3>
 
 		<p>getURL extracts the values of the clicked link and displays them in a popup table. This tool makes it simpler to test and see the values presented as the query string.</p>
 
@@ -47,14 +48,11 @@
 
 	<section data-page="changelog">			
       	<div class="container">
-			<h3>Version: 1.0.8</h3>
+			<h3>Version: 1.0.9</h3>
 
 			<ul>
-				<li>Updated the overall styling of the extension.</li>
-				<li>Added a multiple tab system to see different sections of the extension.</li>
-				<li>Added export functionality to both Tab and CSV.</li>
-				<li>Added a new "Full URL" preview on the getURL tab, this will show the full URL without the need to select or alter the query parameters.</li>
-				<li>General code clean up.</li>
+				<li>Added settings system.</li> 
+        		<li>Merged request <code><a href="https://github.com/stuartajd/getURL/pull/6" target="_blank">#6</a></code> that brings getURL to the DevTools, highlight a URL within the Chrome Console to display more information. Thanks <a href="https://github.com/ssddanbrown"  target="_blank">ssddanbrown</a><p><img src="https://user-images.githubusercontent.com/8343178/36646122-2c1bcd6c-1a6b-11e8-90de-12c66a3c9c90.gif" style="width: 100%;"></p></li> 
 			</ul>
 
 			<div class="alert">The changelog will only automatically appear during updates or new installations. Click to a tab on the left to hide.</div>
@@ -97,7 +95,7 @@
 	</section>
 
 	<section data-page="export">
-		<h3>Export URL Parameters</h3>
+		<h3>getURL Parameter Export</h3>
 
 		<div class="alert" id="exportError">It doesn't look like you've got any URL Parameters to export.</div>
 		
@@ -121,13 +119,22 @@
 		<ul id="historyList"></ul>
 	</section>	
 
+	<section data-page="settings"> 
+	    <h3>getURL Settings</h3> 
+	    <p>These settings control getURL and all aspects behind it. They are synced between browsers that you are logged in on.</p> 
+	 	
+	 	<div class="alert">No settings available.</div>
+		<!-- <p><button type="button" data-action="toggleDarkMode">Toggle Dark Mode</button></p> -->
+	     
+  	</section> 
+
 	<section data-page="reset">
 		<h3>Confirm Reset</h3>
 		<div class="alert">This action will completely refresh getURL. It will <strong>keep</strong> the history but reset the current stored link.</div>
-		<p><button type="button" id="resetKeepHistory">Reset, Keep History</button></p>
+		<p><button type="button" data-action="resetKeepHistory">Reset, Keep History</button></p>
 
 		<div class="alert">This action will completely reset getURL. It will <strong>clear</strong> the history.</div>
-		<p><button type="button" id="resetEverything">Reset Everything</button></p>
+		<p><button type="button" data-action="resetEverything">Reset Everything</button></p>
 	</section>
 </body>
 

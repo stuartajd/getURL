@@ -214,6 +214,16 @@ window.onload = function () {
 				case "exportTSV":
 					document.querySelector("#exportOutput").value = exportTSV();
 					break;
+				case "resetKeepHistory":
+					chrome.storage.sync.set({ url: '' });
+					chrome.browserAction.setBadgeText({ text: "" });
+					window.location.reload();
+					break;
+				case "resetEverything":
+					chrome.storage.sync.set({ url: '', CLread: false, history: "" });
+					chrome.browserAction.setBadgeText({ text: "" });
+					window.location.reload();
+					break;
 			}
 		}
 	});
@@ -234,24 +244,6 @@ window.onload = function () {
 		setURLbasePreview();
 	});
 	
-	// Reset but keep the history
-	document.querySelector("#resetKeepHistory").addEventListener("click", function () {
-		chrome.storage.sync.set({
-			url: ''
-		});
-		chrome.browserAction.setBadgeText({ text: "" });
-		window.location.reload();
-	});
-
-	// Reset everything, reset the history
-	document.querySelector("#resetEverything").addEventListener("click", function () {
-		chrome.storage.sync.set({
-			url: '', CLread: false, history: ""
-		});
-		chrome.browserAction.setBadgeText({ text: "" });
-		window.location.reload();
-	});
-
 	// Runs getURL on the history URL
 	document.querySelector("#historyList").addEventListener("click", function (e) {
 		if(e.target.dataset.action = "historyGetURL"){

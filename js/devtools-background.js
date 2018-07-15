@@ -2,7 +2,7 @@
 let sidebar = null;
 
 // Create a custom sidebar control
-chrome.devtools.panels.elements.createSidebarPane("Query Params", sidebarInstance => {
+chrome.devtools.panels.elements.createSidebarPane("getURL Query Parameters", sidebarInstance => {
 	sidebar = sidebarInstance;
 	sidebar.setObject({});
 });
