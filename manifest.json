@@ -12,6 +12,7 @@
 		"persistent": false,
 		"scripts": ["js/background.js"]
 	},
+	"devtools_page": "devtools.html",
 
 	"manifest_version": 2,
 
