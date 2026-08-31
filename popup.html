@@ -27,7 +27,7 @@
 	</aside> 
 
 	<section data-page="about">			
-		<h3>getURL - 1.0.9</h3>
+		<h3>getURL - 1.1.0</h3>
 
 		<p>getURL extracts the values of the clicked link and displays them in a popup table. This tool makes it simpler to test and see the values presented as the query string.</p>
 
@@ -48,11 +48,14 @@
 
 	<section data-page="changelog">			
       	<div class="container">
-			<h3>Version: 1.0.9</h3>
+			<h3>Version: 1.1.0</h3>
 
 			<ul>
-				<li>Added settings system.</li> 
-        		<li>Merged request <code><a href="https://github.com/stuartajd/getURL/pull/6" target="_blank">#6</a></code> that brings getURL to the DevTools, highlight a URL within the Chrome Console to display more information. Thanks <a href="https://github.com/ssddanbrown"  target="_blank">ssddanbrown</a><p><img src="https://user-images.githubusercontent.com/8343178/36646122-2c1bcd6c-1a6b-11e8-90de-12c66a3c9c90.gif" style="width: 100%;"></p></li> 
+				<li>Updated getURL to Manifest V3, keeping it working in current versions of Chrome.</li>
+				<li>Fixed the Preview URL double encoding parameter values when a row was unselected and selected again.</li>
+				<li>Fixed CSV and TSV exports breaking into extra columns when a parameter value contained a comma or a quote.</li>
+				<li>Fixed the DevTools sidebar failing to read links with a relative address.</li>
+				<li>Fixed clicking the empty area of the History list throwing an error.</li>
 			</ul>
 
 			<div class="alert">The changelog will only automatically appear during updates or new installations. Click to a tab on the left to hide.</div>
@@ -67,7 +70,7 @@
 		<h3>getURL Parameters</h3>
 
       	<div id="table">
-      		<fieldset id="showURL" style="margin-bottom: 1em;">
+      		<fieldset class="showURL" style="margin-bottom: 1em;">
 			  	<legend>Preview URL</legend>
 				<code><a id="URLbase" target="_blank"></a></code>
 	 		</fieldset>
@@ -87,7 +90,7 @@
 				<p></p>
 			</div>
 
-			<fieldset id="showURL" style="margin-bottom: 1em;">
+			<fieldset class="showURL" style="margin-bottom: 1em;">
 			  	<legend>Full URL</legend>
 				<code><a id="fullURL" target="_blank"></a></code>
 	 		</fieldset>

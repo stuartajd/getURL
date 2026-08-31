@@ -9,7 +9,7 @@ chrome.devtools.panels.elements.createSidebarPane("getURL Query Parameters", sid
 
 // Listen to element selection change and get element HREF on change
 chrome.devtools.panels.elements.onSelectionChanged.addListener(_ => {
-	chrome.devtools.inspectedWindow.eval("$0.getAttribute('href')", (result, isException) => {
+	chrome.devtools.inspectedWindow.eval("$0.href", (result, isException) => {
   		setSidebarParams(result);
     });
 });

@@ -13,7 +13,7 @@ window.onload = function () {
 	/** CHROME STORAGE **/
 
 	chrome.storage.onChanged.addListener(function(changes, namespace) {
-	    for(key in changes){
+	    for(let key in changes){
 	    	if(key === "url"){
 	    		window.location.reload();
 	    	}
@@ -34,15 +34,13 @@ window.onload = function () {
 	});
 
 	chrome.storage.sync.get('url', function (item) {
-		let tbody = document.querySelector("tbody");
-
 		if (item.url) {
 			pageURL = item.url;
 			getURL(item.url);
 		} else {
 			pageURL = "";
 			showExport(false);
-			document.getElementById("showURL").style.display = "none";
+			document.querySelectorAll(".showURL").forEach(el => el.style.display = "none");
 			setURLbasePreview();
 		}
 	});
@@ -52,7 +50,7 @@ window.onload = function () {
 	// Initial page loading
 	function init(){
 		showPage("about");
-		showExport("false");
+		showExport(false);
 	}
 
 	// Show the export buttons
@@ -79,7 +77,7 @@ window.onload = function () {
 		pageURL = url.substring(0,url.indexOf("?"));
 		document.getElementById("URLbase").textContent = pageURL;
 		document.getElementById("URLbase").href = pageURL;
-		document.getElementById("showURL").style.display = "block";
+		document.querySelectorAll(".showURL").forEach(el => el.style.display = "block");
 
 		let searchParams = new URLSearchParams(new URL(url).search);
 		params = Array.from(searchParams);
@@ -131,9 +129,7 @@ window.onload = function () {
 
 	// Get the URL parameters from the selected URL
 	function getSelectedURLParams(){
-		return previewList.map(e => e.join('=')).filter(function(x) {
-		    return typeof x !== 'undefined';
-		}).join('&');
+		return previewList.map(p => p[0] + '=' + encodeURIComponent(p[1])).join('&');
 	}
 
 	// Set the requested page as shown, hide all the other pages
@@ -161,38 +157,18 @@ window.onload = function () {
 		}
 	}
 
-	// Export the current table as CSV and populate the Output Box
-	function exportCSV() {
-		var csv = [];
-		var rows = document.querySelectorAll("#getURL tr");
-		
-	    for (var i = 0; i < rows.length; i++) {
-			var row = [], cols = rows[i].querySelectorAll("td, th");
-			
-	        for (var j = 0; j < cols.length; j++) 
-	            row.push(cols[j].innerText);
-	        
-			csv.push(row.join(","));		
-		}
-
-	    return csv.join("\n");
-	}
-
-	// Export the current table as TSV and populate the Output Box
-	function exportTSV() {
-		var tsv = [];
-		var rows = document.querySelectorAll("#getURL tr");
-		
-	    for (var i = 0; i < rows.length; i++) {
-			var row = [], cols = rows[i].querySelectorAll("td, th");
-			
-	        for (var j = 0; j < cols.length; j++) 
-	            row.push(cols[j].innerText);
-	        
-			tsv.push(row.join("\t"));		
-		}
-
-	    return tsv.join("\n");
+	// Export the current table as delimited text for the Output Box
+	function exportTable(separator) {
+		return Array.from(document.querySelectorAll("#getURL tr")).map(function (row) {
+			return Array.from(row.querySelectorAll("td, th")).map(function (cell) {
+				var text = cell.innerText;
+				// Quote anything that would otherwise break the columns
+				if (text.includes(separator) || text.includes('"') || text.includes("\n")) {
+					return '"' + text.replace(/"/g, '""') + '"';
+				}
+				return text;
+			}).join(separator);
+		}).join("\n");
 	}
 	
 	/** EVENT LISTENERS **/
@@ -209,10 +185,10 @@ window.onload = function () {
 					loadHistory();
 					break;
 				case "exportCSV":
-					document.querySelector("#exportOutput").value = exportCSV();
+					document.querySelector("#exportOutput").value = exportTable(",");
 					break;
 				case "exportTSV":
-					document.querySelector("#exportOutput").value = exportTSV();
+					document.querySelector("#exportOutput").value = exportTable("\t");
 					break;
 				case "resetKeepHistory":
 					chrome.storage.sync.set({ url: '' });
@@ -234,7 +210,6 @@ window.onload = function () {
 		var index = (e.target.parentNode.rowIndex - 1);
 		var preIn = previewList.indexOf(params[index])
 		if(preIn === -1){
-			params[index][1] = encodeURIComponent(params[index][1]);
 			previewList.push(params[index]);
 			e.target.parentNode.style.backgroundColor = "#ffb347";
 		} else {
@@ -246,7 +221,7 @@ window.onload = function () {
 	
 	// Runs getURL on the history URL
 	document.querySelector("#historyList").addEventListener("click", function (e) {
-		if(e.target.dataset.action = "historyGetURL"){
+		if(e.target.dataset.action === "historyGetURL"){
 			getURL(e.target.textContent);
 		}
 	});
