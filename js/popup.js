@@ -115,7 +115,7 @@ window.onload = function () {
 			}
 		}
 		
-		chrome.browserAction.setBadgeText({ text: count.toString() });
+		chrome.action.setBadgeText({ text: count.toString() });
 		setURLbasePreview();
 		showPage("getURL");
 		showExport(true);
@@ -216,12 +216,12 @@ window.onload = function () {
 					break;
 				case "resetKeepHistory":
 					chrome.storage.sync.set({ url: '' });
-					chrome.browserAction.setBadgeText({ text: "" });
+					chrome.action.setBadgeText({ text: "" });
 					window.location.reload();
 					break;
 				case "resetEverything":
 					chrome.storage.sync.set({ url: '', CLread: false, history: "" });
-					chrome.browserAction.setBadgeText({ text: "" });
+					chrome.action.setBadgeText({ text: "" });
 					window.location.reload();
 					break;
 			}
